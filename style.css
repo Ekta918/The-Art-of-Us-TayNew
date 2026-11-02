@@ -157,7 +157,11 @@ h1 em { font-style: italic; color: var(--brown); }
 /* ---------- Projects: framed works with wall labels ---------- */
 .projects { background: var(--white); }
 
-.project-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 54px 34px; max-width: 1200px; margin: 0 auto; }
+.project-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 35px;
+}
 .span-2 { grid-column: span 2; }
 
 .mat {
@@ -166,9 +170,33 @@ h1 em { font-style: italic; color: var(--brown); }
 }
 .project-card:hover .mat { transform: translateY(-8px); box-shadow: 0 28px 50px #343b3826; }
 
-.project-img { height: 300px; }
-.project-img img { transition: transform .8s var(--ease); }
-.project-card:hover .project-img img { transform: scale(1.05); }
+.project-img {
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    overflow: hidden;
+    position: relative;
+}
+.project-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.5s ease;
+}
+.project-card:hover .project-img img {
+    transform: scale(1.04);
+}
+@media (max-width: 850px) {
+    .project-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+@media (max-width: 550px) {
+    .project-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 18px;
+    }
+}
 
 .label { padding: 20px 4px 0; max-width: 340px; }
 .label__no { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--brown); font-weight: 600; }
@@ -324,9 +352,6 @@ h1 em { font-style: italic; color: var(--brown); }
     .hero-image { height: 430px; }
     .plaque { max-width: 190px; font-size: 17px; padding: 13px 17px; bottom: 24px; }
 
-    .project-grid { grid-template-columns: 1fr; gap: 44px; }
-    .span-2 { grid-column: auto; }
-    .project-img { height: 300px; }
 
     .portrait-img { height: 420px; }
     .timeline { --yw: 62px; --gap: 28px; }
